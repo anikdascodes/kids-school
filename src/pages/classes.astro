@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const classes = [
+    {
+        grade: "Kindergarten",
+        ageGroup: "4-5 years",
+        description: "A nurturing environment where young minds begin their educational journey through play-based learning.",
+        activities: ["Basic Numbers", "Alphabet Fun", "Arts & Crafts", "Story Time"],
+        icon: "🎨"
+    },
+    {
+        grade: "Grade 1",
+        ageGroup: "5-6 years",
+        description: "Building fundamental skills in reading, writing, and arithmetic through interactive learning.",
+        activities: ["Reading Skills", "Basic Math", "Science Discovery", "Music & Movement"],
+        icon: "📚"
+    },
+    {
+        grade: "Grade 2",
+        ageGroup: "6-7 years",
+        description: "Expanding knowledge and developing critical thinking skills through engaging activities.",
+        activities: ["Advanced Reading", "Math Operations", "Nature Studies", "Creative Writing"],
+        icon: "✏️"
+    },
+    {
+        grade: "Grade 3",
+        ageGroup: "7-8 years",
+        description: "Fostering independence and deeper understanding of core subjects.",
+        activities: ["Literature", "Advanced Math", "Science Projects", "Social Studies"],
+        icon: "🔬"
+    }
+];
+
+const teachers = [
+    {
+        name: "Ms. Sarah Johnson",
+        role: "Kindergarten Lead Teacher",
+        qualifications: ["M.Ed. Early Childhood Education", "15 years experience"],
+        specialties: ["Play-based Learning", "Child Development"],
+        image: "/images/teacher-placeholder.svg"
+    },
+    {
+        name: "Mr. David Chen",
+        role: "Grade 1 Teacher",
+        qualifications: ["B.Ed. Elementary Education", "Certified Math Specialist"],
+        specialties: ["Interactive Math", "Technology Integration"],
+        image: "/images/teacher-placeholder.svg"
+    },
+    {
+        name: "Mrs. Emily Rodriguez",
+        role: "Grade 2 Teacher",
+        qualifications: ["M.Ed. Curriculum Development", "Reading Specialist"],
+        specialties: ["Literacy Development", "Creative Arts"],
+        image: "/images/teacher-placeholder.svg"
+    },
+    {
+        name: "Dr. Michael Brown",
+        role: "Grade 3 Teacher",
+        qualifications: ["Ph.D. Education", "Science Education Specialist"],
+        specialties: ["STEM Education", "Project-based Learning"],
+        image: "/images/teacher-placeholder.svg"
+    }
+];
+---
+
+<Layout title="Classes & Teachers - Kids School">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Classes Section -->
+        <section class="mb-20">
+            <h1 class="text-4xl font-bubble text-primary text-center mb-12">Our Classes 📚</h1>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                {classes.map(classItem => (
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-102 transition-transform">
+                        <div class="flex items-center mb-4">
+                            <span class="text-4xl mr-4">{classItem.icon}</span>
+                            <div>
+                                <h2 class="text-2xl font-bubble text-secondary">{classItem.grade}</h2>
+                                <p class="font-comic text-gray-600">Age: {classItem.ageGroup}</p>
+                            </div>
+                        </div>
+                        
+                        <p class="font-comic text-gray-700 mb-4">{classItem.description}</p>
+                        
+                        <div class="bg-background p-4 rounded-lg">
+                            <h3 class="font-bubble text-primary mb-2">Daily Activities:</h3>
+                            <ul class="grid grid-cols-2 gap-2">
+                                {classItem.activities.map(activity => (
+                                    <li class="font-comic flex items-center">
+                                        <span class="text-secondary mr-2">✦</span>
+                                        {activity}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- Teachers Section -->
+        <section>
+            <h1 class="text-4xl font-bubble text-primary text-center mb-12">Meet Our Teachers 👩‍🏫</h1>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {teachers.map(teacher => (
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform">
+                        <div class="relative mb-4 aspect-square overflow-hidden rounded-lg">
+                            <img 
+                                src={teacher.image} 
+                                alt={teacher.name}
+                                class="object-contain w-full h-full"
+                            />
+                        </div>
+                        
+                        <h2 class="text-xl font-bubble text-secondary mb-2">{teacher.name}</h2>
+                        <p class="font-comic text-primary mb-4">{teacher.role}</p>
+                        
+                        <div class="space-y-2">
+                            <h3 class="font-bubble text-gray-700">Qualifications:</h3>
+                            <ul class="font-comic text-sm text-gray-600">
+                                {teacher.qualifications.map(qual => (
+                                    <li class="flex items-center">
+                                        <span class="text-accent mr-2">★</span>
+                                        {qual}
+                                    </li>
+                                ))}
+                            </ul>
+                            
+                            <h3 class="font-bubble text-gray-700 mt-4">Specialties:</h3>
+                            <ul class="font-comic text-sm text-gray-600">
+                                {teacher.specialties.map(specialty => (
+                                    <li class="flex items-center">
+                                        <span class="text-secondary mr-2">✦</span>
+                                        {specialty}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .aspect-square {
+        aspect-ratio: 1 / 1;
+    }
+</style>

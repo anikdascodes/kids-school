@@ -4,47 +4,291 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+	{ name: 'Home', path: '/', emoji: '🏠' },
+	{ name: 'Classes', path: '/classes', emoji: '📚' },
+	{ name: 'Blog', path: '/blog', emoji: '✏️' },
+	{ name: 'Contact', path: '/contact', emoji: '📞' }
+];
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="A fun and engaging school website for kids" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-background min-h-screen">
+		<header class="sticky top-0 z-50">
+			<!-- Navigation Background with Blur -->
+			<div class="absolute inset-0 bg-primary/90 backdrop-blur-md shadow-lg"></div>
+
+			<nav class="relative container mx-auto px-4">
+				<div class="flex flex-col md:flex-row md:items-center md:justify-between py-3">
+					<div class="flex justify-between items-center">
+						<a href="/" class="group relative z-10">
+							<span class="absolute -inset-2 bg-gradient-to-r from-accent via-primary-light to-secondary rounded-lg blur opacity-0 group-hover:opacity-25 transition-opacity"></span>
+							<span class="relative text-xl sm:text-2xl font-bubble text-white group-hover:text-accent transition-colors">
+								Kids School 🎨
+							</span>
+						</a>
+						<button id="menu-toggle" class="md:hidden relative group p-2 z-10">
+							<span class="absolute -inset-2 bg-gradient-to-r from-accent via-primary-light to-secondary rounded-lg blur opacity-0 group-hover:opacity-25 transition-opacity"></span>
+							<span class="relative text-2xl text-white group-hover:text-accent transition-colors">🍔</span>
+						</button>
+					</div>
+
+					<ul id="nav-menu" class="hidden md:flex flex-col md:flex-row md:space-x-1 font-bubble text-base lg:text-lg mt-4 md:mt-0 absolute md:relative top-full left-0 right-0 bg-primary/90 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-4 md:p-0 rounded-b-lg md:rounded-none shadow-lg md:shadow-none">
+						{navItems.map(item => (
+							<li class="mb-2 md:mb-0">
+								<a 
+									href={item.path} 
+									class={`
+										relative group block py-2 px-4 rounded-lg transition-all duration-300
+										${currentPath === item.path 
+											? 'text-accent bg-white/10' 
+											: 'text-white hover:text-accent'
+										}
+									`}
+								>
+									<span class="absolute inset-0 bg-gradient-to-r from-accent-light to-accent rounded-lg opacity-0 group-hover:opacity-10 transition-opacity"></span>
+									<span class="relative flex items-center space-x-2">
+										<span class="text-xl">{item.emoji}</span>
+										<span>{item.name}</span>
+									</span>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<main class="min-h-[calc(100vh-4rem)]">
+			<slot />
+		</main>
+
+		<footer class="bg-secondary relative overflow-hidden">
+			<!-- Background Pattern -->
+			<div class="absolute inset-0 bg-dots opacity-10"></div>
+
+			<div class="relative container mx-auto px-4 py-12">
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+					<div class="space-y-4">
+						<h3 class="font-bubble text-xl sm:text-2xl text-white mb-6">Quick Links 🔗</h3>
+						<ul class="space-y-3 font-comic">
+							{navItems.map(item => (
+								<li>
+									<a href={item.path} class="group relative inline-block text-white/90 hover:text-white transition-colors">
+										<span class="absolute -inset-2 bg-gradient-to-r from-accent-light to-accent rounded-lg opacity-0 group-hover:opacity-10 transition-opacity"></span>
+										<span class="relative flex items-center space-x-2">
+											<span>{item.emoji}</span>
+											<span>{item.name}</span>
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					<div class="space-y-4">
+						<h3 class="font-bubble text-xl sm:text-2xl text-white mb-6">Contact Us 📞</h3>
+						<ul class="space-y-3 font-comic text-white/90">
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">📍</span>
+								<span class="flex-1">123 Learning Street</span>
+							</li>
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">🏙️</span>
+								<span class="flex-1">Education City, ED 12345</span>
+							</li>
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">📱</span>
+								<span class="flex-1">(123) 456-7890</span>
+							</li>
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">📧</span>
+								<span class="flex-1 break-all">hello@kidsschool.com</span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="space-y-4 sm:col-span-2 lg:col-span-1">
+						<h3 class="font-bubble text-xl sm:text-2xl text-white mb-6">School Hours ⏰</h3>
+						<ul class="space-y-3 font-comic text-white/90">
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">📅</span>
+								<span class="flex-1">Monday - Friday</span>
+							</li>
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">🌅</span>
+								<span class="flex-1">8:00 AM - 3:00 PM</span>
+							</li>
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">🎨</span>
+								<span class="flex-1">After School Programs</span>
+							</li>
+							<li class="flex items-center space-x-2">
+								<span class="text-xl">🌟</span>
+								<span class="flex-1">3:00 PM - 5:00 PM</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="text-center mt-12 pt-8 border-t border-white/10">
+					<p class="font-comic text-white/90 text-sm sm:text-base">
+						&copy; 2024 Kids School. Making learning fun! 
+						<span class="inline-block animate-bounce-slow">🌟</span>
+					</p>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
+
 <style is:global>
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--accent: 255, 230, 109;
+		--primary: 255, 107, 107;
+		--secondary: 78, 205, 196;
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
+		font-family: 'Comic Neue', system-ui, sans-serif;
+		scroll-behavior: smooth;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+	body {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+		overflow-x: hidden;
+	}
+
+	/* Custom Scrollbar */
+	::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #F7F9FC;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: rgb(var(--primary));
+		border-radius: 4px;
+		border: 2px solid #F7F9FC;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: rgb(var(--primary), 0.8);
+	}
+
+	/* Mobile Optimization */
+	@media (max-width: 768px) {
+		::-webkit-scrollbar {
+			width: 4px;
+		}
+	}
+
+	/* Prevent text selection on interactive elements */
+	.font-bubble {
+		-webkit-user-select: none;
+		user-select: none;
+	}
+</style>
+
+<script>
+	// Mobile menu toggle with animation
+	const menuToggle = document.getElementById('menu-toggle');
+	const navMenu = document.getElementById('nav-menu');
+
+	menuToggle?.addEventListener('click', () => {
+		navMenu?.classList.toggle('hidden');
+		if (!navMenu?.classList.contains('hidden')) {
+			// Add slide-down animation when showing
+			navMenu.style.animation = 'slideDown 0.3s ease-out forwards';
+		} else {
+			// Add slide-up animation when hiding
+			navMenu.style.animation = 'slideUp 0.3s ease-out forwards';
+		}
+	});
+
+	// Close menu on navigation
+	const navLinks = navMenu?.getElementsByTagName('a');
+	if (navLinks) {
+		Array.from(navLinks).forEach(link => {
+			link.addEventListener('click', () => {
+				if (window.innerWidth < 768) { // mobile view
+					navMenu?.classList.add('hidden');
+				}
+			});
+		});
+	}
+
+	// Close menu on outside click
+	document.addEventListener('click', (event) => {
+		const target = event.target as HTMLElement;
+		if (window.innerWidth < 768 && 
+			!target.closest('#nav-menu') && 
+			!target.closest('#menu-toggle') && 
+			!navMenu?.classList.contains('hidden')) {
+			navMenu?.classList.add('hidden');
+		}
+	});
+
+	// Add smooth scroll behavior
+	document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+		anchor.addEventListener('click', function (e) {
+			e.preventDefault();
+			const href = this.getAttribute('href');
+			if (href) {
+				document.querySelector(href)?.scrollIntoView({
+					behavior: 'smooth'
+				});
+			}
+		});
+	});
+
+	// Handle window resize
+	window.addEventListener('resize', () => {
+		if (window.innerWidth >= 768) {
+			navMenu?.classList.remove('hidden');
+		} else {
+			navMenu?.classList.add('hidden');
+		}
+	});
+</script>
+
+<style>
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slideUp {
+		from {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		to {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
 	}
 </style>

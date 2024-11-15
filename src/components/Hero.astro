@@ -1,0 +1,92 @@
+---
+---
+
+<div class="relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 bg-dots opacity-30"></div>
+    
+    <!-- Hero Content -->
+    <div class="relative bg-gradient-radial from-accent-light/30 to-background py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left space-y-6">
+                    <div class="relative inline-block">
+                        <span class="absolute -inset-1 bg-gradient-to-r from-primary-light via-primary to-secondary rounded-lg blur opacity-30"></span>
+                        <h1 class="relative text-5xl md:text-6xl font-bubble text-primary mb-6 animate-fadeIn">
+                            Welcome to Our 
+                            <span class="text-secondary block mt-2">Wonderful School! 🌟</span>
+                        </h1>
+                    </div>
+                    
+                    <p class="text-xl font-comic text-text-secondary leading-relaxed">
+                        Where every child's journey of discovery begins with joy and wonder! Join us in creating a 
+                        <span class="text-primary-dark font-bold">bright</span> and 
+                        <span class="text-secondary-dark font-bold">exciting</span> future.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-8">
+                        <a href="/classes" 
+                           class="group relative inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white font-bubble py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 shadow-soft hover:shadow-hover">
+                            <span class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary rounded-lg opacity-0 group-hover:opacity-20 transition-opacity"></span>
+                            Explore Classes 📚
+                        </a>
+                        <a href="/contact" 
+                           class="group relative inline-flex items-center justify-center bg-secondary hover:bg-secondary-dark text-white font-bubble py-3 px-6 rounded-lg transition-all duration-300 hover:scale-105 shadow-soft hover:shadow-hover">
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary-light to-secondary rounded-lg opacity-0 group-hover:opacity-20 transition-opacity"></span>
+                            Visit Us 🏫
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <!-- Main Image -->
+                    <div class="relative z-10 transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="relative">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-primary-light via-accent to-secondary rounded-2xl blur opacity-30 group-hover:opacity-40 transition-opacity"></div>
+                            <img 
+                                src="/images/hero-kids.svg" 
+                                alt="Happy children at school" 
+                                class="relative rounded-2xl shadow-hover bg-white"
+                            />
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -bottom-6 -right-6 bg-accent p-4 rounded-lg shadow-hover transform rotate-6 group-hover:rotate-0 transition-transform duration-300 z-20">
+                        <p class="font-bubble text-primary text-lg">Join the Fun! 🎨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Elements -->
+    <div class="absolute top-1/4 left-10 animate-float">
+        <div class="text-4xl transform rotate-12">🎨</div>
+    </div>
+    <div class="absolute bottom-1/4 right-10 animate-bounce-slow">
+        <div class="text-4xl transform -rotate-12">🚀</div>
+    </div>
+    <div class="absolute top-1/2 right-1/4 animate-pulse">
+        <div class="text-4xl">⭐</div>
+    </div>
+    <div class="absolute bottom-1/3 left-1/4 animate-wiggle">
+        <div class="text-4xl">🌈</div>
+    </div>
+</div>
+
+<style>
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fadeIn {
+        animation: fadeIn 1s ease-out;
+    }
+</style>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="800" height="600" fill="#FFE66D" opacity="0.2"/>
+    
+    <!-- School Building -->
+    <rect x="200" y="200" width="400" height="300" fill="#4ECDC4"/>
+    <polygon points="180,200 400,100 620,200" fill="#FF6B6B"/>
+    
+    <!-- Windows -->
+    <rect x="250" y="250" width="80" height="80" fill="#FFFFFF"/>
+    <rect x="360" y="250" width="80" height="80" fill="#FFFFFF"/>
+    <rect x="470" y="250" width="80" height="80" fill="#FFFFFF"/>
+    
+    <!-- Door -->
+    <rect x="360" y="380" width="80" height="120" fill="#FFE66D"/>
+    
+    <!-- Trees -->
+    <circle cx="150" cy="400" r="50" fill="#4ECDC4"/>
+    <rect x="140" y="400" width="20" height="100" fill="#FF6B6B"/>
+    
+    <circle cx="650" cy="400" r="50" fill="#4ECDC4"/>
+    <rect x="640" y="400" width="20" height="100" fill="#FF6B6B"/>
+    
+    <!-- Sun -->
+    <circle cx="700" cy="100" r="40" fill="#FFE66D"/>
+    
+    <!-- Clouds -->
+    <circle cx="200" cy="100" r="30" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="230" cy="100" r="40" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="260" cy="100" r="30" fill="#FFFFFF" opacity="0.8"/>
+    
+    <circle cx="500" cy="150" r="30" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="530" cy="150" r="40" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="560" cy="150" r="30" fill="#FFFFFF" opacity="0.8"/>
+</svg>
