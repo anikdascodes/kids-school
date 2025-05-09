@@ -58,7 +58,7 @@ const features = [
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map(feature => (
-                <div class="group relative">
+                <div class="group relative feature-card opacity-0">
                     <!-- Card Background Glow -->
                     <div class="absolute -inset-1 bg-gradient-to-r from-primary-light via-accent to-secondary rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
                     
@@ -119,3 +119,22 @@ const features = [
 </style>
 
 <div class="w-full h-24 bg-white" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);"></div>
+
+<script>
+    // Intersection Observer for feature cards
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate-slide-in');
+                    entry.target.style.opacity = '1';
+                }, index * 100); // Stagger the animations
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // Observe all feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+        observer.observe(card);
+    });
+</script>
