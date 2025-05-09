@@ -39,7 +39,7 @@ const testimonials = [
 
                 <div class="grid md:grid-cols-3 gap-8">
                     {testimonials.map(testimonial => (
-                        <div class="bg-white p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform">
+                        <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg transform hover:-translate-y-2 transition-transform opacity-0">
                             <div class="text-4xl mb-4 text-center">{testimonial.emoji}</div>
                             <p class="font-comic text-gray-700 mb-4 text-center italic">"{testimonial.text}"</p>
                             <div class="text-center">
@@ -51,6 +51,25 @@ const testimonials = [
                 </div>
             </div>
         </section>
+
+        <script>
+            // Intersection Observer for testimonial cards
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('animate-slide-in');
+                            entry.target.style.opacity = '1';
+                        }, index * 200); // Stagger the animations
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Observe all testimonial cards
+            document.querySelectorAll('.testimonial-card').forEach(card => {
+                observer.observe(card);
+            });
+        </script>
 
         <!-- Call to Action -->
         <section class="py-16 bg-accent/20">
